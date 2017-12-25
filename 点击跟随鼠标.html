@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #image {
+            width: 88px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<img src="images/img.jpg" alt="" id="image">
+</body>
+</html>
+<script>
+    var image = document.getElementById("image");
+    document.onclick = function (ev) {
+        var evt = ev || window.ev;
+        targetX = evt.clientX - image.offsetWidth/2;
+        targetY = evt.clientY - image.offsetHeight/2;
+    };
+
+
+    //缓动
+    var leaderX = 0,
+        leaderY = 0,
+        targetX = 0,
+        targetY = 0;
+    setInterval(function () {
+        leaderX = leaderX + (targetX - leaderX) / 10;
+        leaderY = leaderY + (targetY - leaderY) / 10;
+        image.style.left = leaderX + "px";
+        image.style.top = leaderY + "px";
+    }, 30)
+</script>
