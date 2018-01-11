@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>五角星评论</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .comment{
+            color: red;
+            font-size: 40px;
+        }
+        ul{
+            list-style: none;
+        }
+        li{
+            float: left;
+        }
+    </style>
+    <script src="jquery-3.2.1.min.js"></script>
+    <script>
+        $(function () {
+            var wjx_sel = "★";
+            var wjx_non = "☆";
+            $(".comment").on("mouseenter","li",function () {
+                $(this).text(wjx_sel).prevAll().text(wjx_sel);
+                $(this).nextAll().text(wjx_non);
+
+                $(this).text(wjx_sel).prevAll().text(wjx_sel).end();
+                //第二步，记录用户点击的那个五角星
+                //给点击的li添加样式类
+            }).on("click","li",function () {
+                $(this).addClass('clicked').siblings().removeClass('clicked');
+            }).on("mouseleave","li",function () {
+                $(".comment li").text(wjx_non);
+                $(".clicked").text(wjx_sel).prevAll().text(wjx_sel).end().nextAll().text(wjx_non);
+            })
+        })
+    </script>
+</head>
+<body>
+<ul class="comment">
+    <li>☆</li>
+    <li>☆</li>
+    <li>☆</li>
+    <li>☆</li>
+    <li>☆</li>
+</ul>
+</body>
+</html>
